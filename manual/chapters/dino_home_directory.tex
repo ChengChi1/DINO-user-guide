@@ -1,0 +1,12 @@
+\section{{\it DINO} home directory}
+\label{DINO-home-directory}
+The structure and content of the DINO home directory is as follows:
+\begin{itemize}
+\item \textbf{\$DINOSOARS\_HOME/DOCUMENTATION:} Contains DINO user manuals and other useful materials related to DINO.
+\item \textbf{\$DINOSOARS\_HOME/SOURCES:} All the Fortran source files are located in this directory and regrouped under appropriate subdirectories (or modules) with obvious names. The description of these source files is in Chapt. \ref{Description-components}. The \textit{makefile} used for compiling the code is also located here.
+\item \textbf{\$DINOSOARS\_HOME/TOOLS:} Contains all the useful tools including the FPI chemistry table generation tool.
+\item \textbf{\$DINOSOARS\_HOME/WORK:} In this directory, the users can create their own applications. The subdirectory \textit{./RUNS/} contains input file for different applications. The subdirectory \textit{./MECHANISMS/} contains different chemical mechanisms. \textit{./FPI\_TABLES/} contains some fpi chemistry tables which can be used as an alternetive of the full chemical mecanism. \textit{./IBGEOM\_INPUT/} contains the input file for direct boundary IBM applications and the tool to generate the geometry data.
+\item \textbf{\$DINOSOARS\_HOME/CMAKE:} {\textcolor{blue} ???}
+\item \textbf{\$DINOSOARS\_HOME/build:} This directory is created by the user when compiling the code. The installation and compiling should be done in this directory.
+\item \textbf{\$DINOSOARS\_HOME/bin:} After compiling, the execute file will be updated in this directory.
+\end{itemize}

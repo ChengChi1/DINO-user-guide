@@ -1,0 +1,10 @@
+\section{Description of the outputs}
+\label{output}
+The output files are generated in the same directory as the input file, in \$DINOSOARS\_RUNS/dir-applications/ directory. The output results are contained in three newly created directories - data\_restart, data\_timevol and data\_hdf5.
+\begin{itemize}
+\item data\_restart: In this subdirectory, the restart files naming dino\_*** are stored. The interval steps between the saving restart files are defined in the input file DINO\_IN as SAVING\_RESTART\_INTERVAL. All the restart files contain the full solution corresponding to the designated variable.The simulations can restart from any of these restart files. 
+\item data\_timevol: In this subdirectory, the time evolution of corresponding variable (density, pressure, temperature, heat release, time step, velocity, species mole/mass fractions, turbulence statics ...) are stored in dino\_timev\_{$\langle$variables$\rangle$}.dat. In each data file, the first column represents time, the defination of other columns can be found in \$DINOSOARS\_HOME/SOURCES/SAVE/dino\_io\_write\_time\_history.f90. For example, in dino\_timev\_temper.dat, the second column represents the maximum temperature, the third one is the minimum temperature, and the last one represents the average temperature.
+\item data\_hdf5: The binary hdf5 data files for the main variables are stored in this subdirectory.These results are used for post-processing and detailed analysis. Every data file dino\_res\_***.h5 contains the full solution with all details. The interval steps between the saving data files are defined in DINO\_IN as SAVING\_CTRL\_HDF5\_INTERVAL. The hdf5 data files can be post-processed by most of the visualizing softwares, such as VIsit, Paraview and Tecplot.
+\item follow\_on: This file contains regularly updated information concerning the computation (time step, time step control, processor configuration ...).
+\item ctrl\_turb\_generation: This file is generated in the case of turbulent computations. It gives the input and output information of the turbulent parameters.
+\end{itemize} 

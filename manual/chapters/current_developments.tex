@@ -1,0 +1,7 @@
+\section{Current developments}
+\label{Current-developments}
+To make DINO code more accurate and efficient, different attempts are still being done. These include implementing higher order immersed boundary and tabulating chemistry for various combustion applications.
+\subsection{3rd order immersed boundary method}
+Immersed boundary method is always an intensive research topic. As introduced in Chapt. \ref{ibm}, DB-IBM, DF-IBM and 2nd order Ghost-cell IBM have already been implemented in DINO. The user can choose among them according to specific applications. To increase the accuracy of the immersed boundary method, we are now trying to implement 3rd order ghost-cell immersed boundary method. If it is stable, DINO would be one of the very few flow solvers which have higher order IBM.
+\subsection{chemistry tabulation}
+In our low Mach solver, chemistry tabulation is a very efficient way for chemical computations. We have already implemented FPI tabulation module in DINO, efforts will be done to make our chemistry tabulation suitable for wider combustion applications.

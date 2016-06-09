@@ -1,0 +1,91 @@
+\section{Installation} 
+\label{Installation}
+\subsection{Getting the code}
+???
+\subsection{Satisfying dependencies}
+To compile the code, you need the CMake build system, which is probably available from your package repositories. DINO needs at least version 2.8.
+
+DINO has a number of dependencies that have to be installed before it can be compiled. These dependencies are:
+\begin{itemize}
+\item 2Decomp\_fft (already included in DINO)
+\item FFTW
+\item Cantera
+\item HDF5
+\item HYPRE
+\item MPI
+\item LAPACK
+\item ScaLAPACK
+\item BLAS
+\item Sundials
+\end{itemize}
+If you can't install some of those libraries system-wide, you might want to install all of them into the same location (e.g. specify a path like $\sim$\textit{/libraries} as the install prefix). In this way all the library and include files will be installed in the same directories and it will be easier to tell CMake where they are later.
+
+\subsubsection{Cantera}
+Install Cantera first when putting external libraries together in some path. Cantera might delete all contents of \textit{lib/} first.
+
+DINO is using Cantera 1.8 for the time being.
+
+We have prepared a preconfig file for compiling Cantera to set the required options. See \textit{TOOLS/SCRIPTS/.preconfig\_cantera\_1.8.0-beta}. You might need to modify a few things before using this script to build Cantera:
+\begin{itemize}
+\item You have to compile Cantera with the use of Sundials. Using the old version of CVODE shipped with Cantera is not supported by DINO. For Cantera 1.8, build it with the use of SUNDIALS 2.3. Set the variable \textit{SUNDIALS\_HOME} to the location you installed Cantera in.
+\item You must enable the Fortran interface, as it is needed by DINO.
+\item It is sufficient to set the Python module to 'minimal'.
+\item You might need to set the compiler (F90) to your Fortran compiler.
+\item To make sure everything works as expected, it is best not to mix Fortran and C compiler from different vendors (e.g. ifort and gcc)
+\item If you want Cantera to use a LAPACK provided by you, and not the one that is shipped with it, you have to set the variables for the BLAS and LAPACK libraries (they might be commented out in the .preconfig file).
+\end{itemize}
+
+\subsubsection{HDF5}
+We require HDF5 version newer than v1.8.8. It must have the Fortran2003 interface and MPI enabled. You can check if this is the case by examing the file \textit{libhdf5.settings} in the same directory as the hdf5 library files. It should say:
+\begin{lstlisting}
+  Fortran: yes
+  Fortran 2003 Compiler: yes
+  Parallel HDF5: yes
+  ...
+\end{lstlisting}
+When compiling HDF5 yourself, you can enable the required settings by adding the following to the command line of the \textit{./configure} script:
+\begin{lstlisting}
+  --enable-fortran --enable-fortran2003 --enable-parallel
+\end{lstlisting}
+
+\subsubsection{ScaLAPACK}
+We advise you to use a ScaLAPACK version newer than 2.0.0, which will have BLACS integrated into it. Our CMake build does not explicitly link to BLACS, so you will need a libscalapack.a that already include BLACS.
+
+\subsubsection{LAPACK}
+Make sure to build the double precision functions (see options when using cmake to compile lapack)
+
+\subsection{Configuring cmake}
+Once you have installed all dependencies, you need to use CMake to generate the Makefiles, which are then used for compilation. If all dependencies are installed system-wide, the following commands will probably do the trick:
+\begin{lstlisting}
+  $ cd DINOSOARS # go to the DINOSOARS top-level directory
+  $ mkdir build && cd build
+  $ cmake -DCMAKE_BUILD_TYPE=Release .. # try to find all the dependent libraries and create the makefiles
+  $ make # compile DINOSOARS
+  $ make install # copy the executables to the install location
+\end{lstlisting}
+You should specify a CMAKE\_BUILD\_TYPE (either Release or Debug), so the appropriate compiler flags are set.
+
+After this, if you changed something in the code or any of the CMakeLists.txt inside the project directory, you just need to run make install again. It will check for changes, re-run \textit{cmake} if necessary, and build and install DINO.
+
+If you encounter any problems along the way, you need to tweak some of the CMake options yourself. See the following sections for more detailed instructions.
+
+\subsubsection{Specifying library search paths}
+By default, CMake searches several hard-coded system directories and some directories specified in environment variables like PATH for the locations of the dependencies. If you have some dependencies installed in unusual locations and CMake does not find them, or if you want CMake to prefer a version of a library in you home directory over the one you have installed system-wide, you need to set the CMake variable \textit{CMAKE\_PREFIX\_PATH}. You can specify this either as an environment variable e.g. in your .bashrc file (useful if you find yourself entering the same paths over and over again), or as a CMake cache variable. To do the latter, invoke CMake like so:
+\begin{lstlisting}
+  $ cmake -DCMAKE_PREFIX_PATH=/some/path/to/libs;/some/other/path/;/another/one ..
+\end{lstlisting}
+This will make sure that CMake looks for libraries and other dependencies in these locations first, before trying any other ones.
+
+\subsubsection{HOSTTYPES}
+We have implemented a mechanism to help setting up DINO on commonly used platforms. This mechanism is based on the HOSTTYPE variable that can be set when first running CMake. Each HOSTTYPE sets up different variables specific to that platform, such as special compiler flags or library search paths. Currently we have the following HOSTTYPES:
+\begin{itemize}
+  \item DEFAULT (Default compiler flags sufficient for most systems)
+  \item PC\_LINUX\_AMD64 (Flags for compilation of common Linux desktop systems. Might also work on 32 bit systems)
+  \item KARMAN (Flags for compilation on KARMAN cluster. Also sets some of the library search paths specific to KARMAN. Might also work on other CentOS based cluster)
+\end{itemize}
+To use one of the predefined HOSTTYPES, add \textit{-DHOSTTYPE=$\langle$HOSTTYPE$\rangle$} to the command line when first running cmake. Replace \textit{$\langle$HOSTTYPE$\rangle$} with the HOSTTYPE of your choice.
+
+To create a custom HOSTTYPE, you can copy and modify one of the existing ones. Go to \textit{CMAKE/modules/} in the DINO project directory and copy the file \textit{DEFAULT-HostProfile.cmake}. Each HOSTTYPE filename must follow the naming scheme \textit{$\langle$NAME$\rangle$-HostProfile.cmake}. The commands in the file will be executed when the user specifies \textit{-DHOSTTYPE=$\langle$NAME$\rangle$} on the command line. Currently the existing HOSTTYPES set some compiler flags based on the compiler that is selected and set some library search paths, but you can do anything.
+
+\subsection{After Compilation}
+When you have successfully compiled and installed DINO, \textit{make install} will have printed out a message telling you the lines you need to add to your bash profile ($\sim$/.bashrc) so that you can invoke DINO from anywhere. This will enable you to access the \textit{DINO} executable for running the simulation and all the helper scripts that come with DINO.

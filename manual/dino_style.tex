@@ -1,0 +1,107 @@
+
+ \usepackage[english]{babel}
+\usepackage[left=0.75in,right=0.75in,top=1.0in,bottom=1.0in,headheight=1.0pt]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{textcomp}
+\usepackage{sidecap}
+\usepackage{pxfonts}
+\usepackage{wrapfig}
+ \usepackage[sort&compress]{natbib}
+ \usepackage[]{varioref}  
+\usepackage{color}
+\usepackage{listings}             % Include the listings-package
+\lstset{ %
+xleftmargin=10pt,%
+xrightmargin=10pt,%
+float=t!h,
+language=Fortran,                % choose the language of the code
+keywordstyle=\color{black}\bfseries,%\underbar, % underlined bold black keywords
+commentstyle=\color{red}, % white comments
+aboveskip=7.5pt,%=\medskipamount, % 10.0pt,
+belowskip=7.5pt,%=\medskipamount, % 10.0pt,
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\tiny,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+% frame=single,	                % adds a frame around the code
+frame=tRBl,
+tabsize=1,	                % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+% title=\lstname,                 % show the filename of files included with \lstinputlisting; also
+% try % % % % caption % % % % instead % of % % % title
+% escapeinside={\%*}{*)}          % if you want to add a comment within your code
+% morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+\newcommand{\dpart}[2]{{\partial #1 \over \partial #2}}
+\newcommand{\dblepart}[2]{{{\partial}^2 #1 \over \partial {#2}^2}}
+\newcommand{\sur}[2]{{#1 \over #2}}
+\newcommand{\be}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\ben}{\begin{eqnarray*}}
+\newcommand{\een}{\end{eqnarray*}}
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\usepackage{color}
+\definecolor{linkcol}{rgb}{0,0,0.4}
+\definecolor{citecol}{rgb}{0.5,0,0}
+%
+\usepackage{hyperref}
+\usepackage{soul}
+\hypersetup{colorlinks,%
+						citecolor=red,%
+						filecolor=black,%
+						linkcolor=blue,%
+						urlcolor=blue}
+ \usepackage{ifpdf}
+%% % -- PDF: Online version
+%\usepackage[pdftex,bookmarks,hyperindex=true,breaklinks=true,pagebackref=true]{hyperref}
+%\hypersetup{
+%    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+%    pdffitwindow=true,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+%	pdfview={FitH},
+%	pdftitle={DNS of turbulent flames},
+%	pdfauthor={Gordon Fru Atanga},
+%	pdfsubject={Direct Numerical Simulation of Turbulent Flames}, %subject of the document
+%    pdfcreator={G. Fru},   % creator of the document
+%    pdfproducer={Kile}, % producer of the document
+%	pdfkeywords={DNS} {Turbulent combustion} {Volume viscosity} {High Performance Computing} {Detailed models}
+%    pdfnewwindow=true,      % links in new window
+%    colorlinks=true,       % false: boxed links; true: colored links
+%	filecolor=magenta      % color of file links
+%    linkcolor=red,          % color of internal links
+%    citecolor=blue,        % color of links to bibliography
+%    urlcolor=cyan,           % color of external links
+%}
+
+\usepackage{fancyhdr}                    % Fancy Header and Footer
+\usepackage{lastpage}
+
+% \fancyfoot{}
+\fancyhf{}
+\lfoot{\footnotesize{\textbf{\textit{G. Fru}}}}
+\rfoot{\footnotesize{\textbf{\textit{\today}}}}
+% \pagestyle{fancy}                       % Sets fancy header and footer
+\fancyhead[LE,RO]{\bfseries\thepage\ of \pageref{LastPage}}    % Page number (boldface) in left on
+% even
+\fancyhead[RE]{\bfseries\nouppercase{\leftmark}}      % Chapter in the right on even pages
+\fancyhead[LO]{\bfseries\nouppercase{\rightmark}}     % Section in the left on odd pages
+% \cfoot{\thepage\ of \pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.5pt}
