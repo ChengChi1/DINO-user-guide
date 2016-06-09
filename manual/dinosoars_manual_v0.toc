@@ -17,15 +17,15 @@
 \contentsline {section}{\numberline {4}Description of different components}{13}{section.4}
 \contentsline {subsection}{\numberline {4.1}Modules contained in {\it DINO}}{13}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Description of the input file}{14}{subsection.4.2}
-\contentsline {section}{\numberline {5}Immersed boundary method}{26}{section.5}
-\contentsline {subsection}{\numberline {5.1}Direct boundary IBM}{26}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Direct force IBM}{26}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Ghost-cell IBM}{26}{subsection.5.3}
-\contentsline {section}{\numberline {6}Quick test cases}{28}{section.6}
-\contentsline {section}{\numberline {7}Running {\it DINO}}{29}{section.7}
-\contentsline {section}{\numberline {8}Description of the outputs}{30}{section.8}
-\contentsline {section}{\numberline {9}Current developments}{31}{section.9}
-\contentsline {subsection}{\numberline {9.1}3rd order immersed boundary method}{31}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}chemistry tabulation}{31}{subsection.9.2}
-\contentsline {section}{\numberline {10}Conclusions}{32}{section.10}
-\contentsline {section}{References}{33}{section.10}
+\contentsline {section}{\numberline {5}Immersed boundary method}{27}{section.5}
+\contentsline {subsection}{\numberline {5.1}Direct boundary IBM}{27}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Direct force IBM}{27}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Ghost-cell IBM}{27}{subsection.5.3}
+\contentsline {section}{\numberline {6}Quick test cases}{29}{section.6}
+\contentsline {section}{\numberline {7}Running {\it DINO}}{30}{section.7}
+\contentsline {section}{\numberline {8}Description of the outputs}{31}{section.8}
+\contentsline {section}{\numberline {9}Current developments}{32}{section.9}
+\contentsline {subsection}{\numberline {9.1}3rd order immersed boundary method}{32}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}chemistry tabulation}{32}{subsection.9.2}
+\contentsline {section}{\numberline {10}Conclusions}{33}{section.10}
+\contentsline {section}{References}{34}{section.10}
